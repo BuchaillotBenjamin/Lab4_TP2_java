@@ -31,6 +31,7 @@ public class PaisService {
                 if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
                     JsonNode jsonData = response.getBody().get(0);
 
+
                     Pais pais = new Pais();
                     pais.setCodigoPais(jsonData.get("ccn3").asInt());
                     pais.setNombrePais(jsonData.get("name").get("common").asText());
@@ -42,10 +43,10 @@ public class PaisService {
                     pais.setLongitud(jsonData.get("latlng").get(1).asDouble());
 
                     paisRepository.save(pais);
-                    System.out.println("Pais: " + pais.getNombrePais() + ", codigo: " + pais.getCodigoPais() + " guardado");
+                    System.out.println("Pais guardado: " + pais.getNombrePais() + " " + pais.getCodigoPais());
                 }
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                System.out.println("Pais no cencontrado " + codigo);
             }
         }
     }
